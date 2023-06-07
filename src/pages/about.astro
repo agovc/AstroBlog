@@ -1,28 +1,60 @@
 ---
 import '../styles/global.css';
-
 import BaseLayout from '../layouts/BaseLayout.astro';
-const pageTitle = "About me";
-
-const identity = {
-  firstName: "Sarah",
-  country: "Canada",
-  occupation: "Technical Writer",
-  hobbies: ["photography", "birdwatching", "baseball"],
-};
-
-const skills = ["HTML", "CSS", "JavaScript", "React", "Astro", "Writing Docs"];
+const pageTitle = "";
 ---
 
 <BaseLayout pageTitle={pageTitle}>
+  <div class="about">
+    <img src="https://media.licdn.com/dms/image/D5603AQHpSshyWo3qOQ/profile-displayphoto-shrink_800_800/0/1672854143750?e=1691625600&v=beta&t=DYSf2eH93cyr1bXStjAN5ZJNmK4IARxEji6zE8AED8M" alt="Santiago Valencia" />
+    <span>
+        <h1>Hey there!</h1>
+        <p>
+            I'm Santiago Valencia, a web engineer based in San Francisco. Originally from Mexico City, I studied Computer Science and Technology at Tec de Monterrey. I also had the amazing opportunity to spend a semester abroad in Linz, Austria, where I focused on Data and Human-Computer Interaction.
+        </p>
+    </span>
+  </div>
   <p>
-    Hi, I'm {identity.firstName}! I live in {identity.country} and work as a{" "}
-    {identity.occupation}. I like {identity.hobbies.join(", ")}.
+    I'm all about frontend, web, usability, and AI. I'm passionate about creating awesome things and sharing my learnings. On my blog, I'll be dishing out cool projects, how I made them, and all the fun stuff in between. Let's embark on this web adventure together!
   </p>
-  <h2>Skills</h2>
-  <ul>
-    {skills.map((skill) => (
-      <li>{skill}</li>
-    ))}
-  </ul>
 </BaseLayout>
+
+<style>
+
+  .about {
+    display: flex;
+  }
+
+  .about p, h1 {
+    margin-left: 30px;
+  }
+
+  p, h1 {
+    font-weight: 300;
+  }
+
+  .about img {
+    border-radius: 50%;
+    width: 200px;
+    height: 200px;
+    margin-top: 30px;
+  }
+
+  @media screen and (max-width: 636px) {
+
+    .about img {
+        display: flex;
+        align-self: center;
+    }
+
+    .about {
+        display: flex;
+        flex-direction: column;
+    }
+
+    .about p, h1, h3 {
+        margin-left: 0;
+    }
+}
+</style>
+

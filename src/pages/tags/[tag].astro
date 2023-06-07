@@ -8,9 +8,10 @@ export async function getStaticPaths() {
 
   return uniqueTags.map((tag) => {
     const filteredPosts = allPosts.filter((post) => post.frontmatter.tags.includes(tag));
+    const filteredByDate = filteredPosts.sort((a, b) => new Date(b.frontmatter.pubDate).getTime() - new Date(a.frontmatter.pubDate).getTime());
     return {
       params: { tag },
-      props: { posts: filteredPosts },
+      props: { posts: filteredByDate },
     };
   });
 }
@@ -22,6 +23,9 @@ type Post = {
   url: string;
   frontmatter: {
     title: string;
+    image: string;
+    pubDate: string;
+    description: string;
   };
 };
 
@@ -29,6 +33,13 @@ type Post = {
 <BaseLayout pageTitle={tag}>
   <p>Posts tagged with {tag}</p>
   <ul>
-    {posts.map((post: Post) => <BlogPost url={post.url} title={post.frontmatter.title}/>)}
+    {posts.map((post: Post) => <BlogPost url={post.url} title={post.frontmatter.title} image={post.frontmatter.image} publishDate={post.frontmatter.pubDate} description={post.frontmatter.description} />)}
   </ul>
 </BaseLayout>
+
+<style>
+  ul {
+      list-style: none;
+      padding: 0;
+  }
+</style>

@@ -1,0 +1,65 @@
+---
+const { tags } = Astro.props;
+---
+
+<div class="tags-container">
+  <ul class="tags-list">
+    {tags.map((tag: string) => 
+        <li class="tags-list-item">
+            <div class="tag-pill">
+                <a href={`/tags/${tag}`} class="tags-list-link">{tag}</a>
+            </div>
+        </li>
+    )}
+  </ul>
+</div>
+
+<style>
+    a {
+        all: unset;
+        font-weight: 300;
+    }
+
+    .tags-container {
+        margin-bottom: 2rem;
+    }
+
+    ul {
+        list-style: none;
+        margin: 0;
+        padding: 0;
+    }
+
+    .tag.list {
+        display: flex;
+    }
+
+    .tags-list-item {
+        display: inline-block;
+        margin-right: 0.5rem;
+        margin-top: 0.5rem;;
+    }
+
+    .tag-pill {
+        background-color: rgb(210, 233, 243);
+        border-radius: 0.5rem;
+        padding: 0.25rem 0.5rem;
+        display: inline-block;
+        color: black;
+    }
+
+    html.dark .tag-pill {
+        background-color: #486983;
+        color: white;
+    }
+
+    html.dark .tag-pill:hover {
+        background-color: #5e7d9a;
+    }
+
+    .tag-pill:hover {
+        background-color: rgb(199, 225, 236);
+        transition: background-color 0.2s ease-in-out;
+    }
+
+</style>

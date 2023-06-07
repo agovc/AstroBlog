@@ -1,7 +1,80 @@
 ---
-const { url, title } = Astro.props;
+const { url, title, image, publishDate, description } = Astro.props;
+const pubDate = new Date(publishDate);
 ---
 
 <li>
-    <a href={url}>{title}</a>
+    <a href={url}>
+        <div class="blog-card">
+            <img class="blog-card-img" src={image.url} />
+            <div class="blog-card-content">
+                <h2>
+                  {title}
+                </h2>
+                <div>
+                  <time
+                    class="text-gray-400"
+                    datetime={pubDate.toISOString()}>
+                    {pubDate.toDateString()}
+                  </time>
+                </div>
+                <p>{description}</p>
+              </div>
+        </div>
+    </a>
 </li>
+
+<style>
+
+    a {
+        all: unset;
+    }
+
+    .blog-card {
+        display: flex;
+        flex-direction: row;
+        justify-content: space-between;
+        align-items: center;
+        margin-bottom: 1rem;
+        padding: 1rem;
+        border-radius: 0.5rem;
+    }
+
+    .blog-card-content {
+        display: flex;
+        flex-direction: column;
+        justify-content: space-between;
+        align-items: flex-start;
+        margin-left: 1rem;
+        width: 100%;
+    }
+
+    .blog-card-img {
+    min-width: 300px;
+    height: 200px;
+    object-fit: cover;
+    border-radius: 0.5rem;
+    }
+
+    h2 {
+        font-weight: 500;
+    }
+
+    html.dark a {
+        color: #fff;
+    }
+
+    @media screen and (max-width: 636px) {
+        .blog-card-img {
+            display: none;
+        }
+
+        .blog-card-content {
+            margin-left: 0;
+        }
+
+        .blog-card {
+            background-color: #f4f4f4;
+        }
+    }
+</style>
